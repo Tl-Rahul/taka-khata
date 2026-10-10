@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Palette drawn from the Bangladesh flag: bottle green for money you have,
+   the red disc reserved for money leaving / owed / overdue. */
+:root {
+  --bg: #f2f5f3;
+  --surface: #ffffff;
+  --surface-2: #e8eeea;
+  --ink: #11251d;
+  --muted: #586b63;
+  --line: #d3ddd7;
+  --brand: #0b6e4f;
+  --brand-strong: #075a40;
+  --brand-ink: #ffffff;
+  --brand-soft: #d9eee4;
+  --neg: #c9372b;
+  --neg-soft: #fae2df;
+  --warn: #a96d10;
+  --warn-soft: #f9ecd3;
+  --info: #2b67a6;
+  --info-soft: #dde9f6;
+  --shadow: 0 1px 0 rgba(17, 37, 29, 0.04), 0 8px 24px -12px rgba(17, 37, 29, 0.18);
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #0a1310;
+  --surface: #101c17;
+  --surface-2: #172720;
+  --ink: #e2ebe6;
+  --muted: #93a69c;
+  --line: #22352c;
+  --brand: #34a97d;
+  --brand-strong: #4cc193;
+  --brand-ink: #03110b;
+  --brand-soft: #12332a;
+  --neg: #f0695b;
+  --neg-soft: #3a1815;
+  --warn: #e3a948;
+  --warn-soft: #382a10;
+  --info: #6aa5e6;
+  --info-soft: #13283d;
+  --shadow: 0 1px 0 rgba(0, 0, 0, 0.3), 0 10px 30px -14px rgba(0, 0, 0, 0.6);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-soft: var(--brand-soft);
+  --color-neg: var(--neg);
+  --color-neg-soft: var(--neg-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --font-sans: "Hind Siliguri", "Noto Sans Bengali", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --shadow-card: var(--shadow);
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.55;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  letter-spacing: -0.01em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0.6;
+}
+.dark input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+/* the ledger rule under section titles: a single green hairline */
+.ledger-rule {
+  background-image: linear-gradient(to right, var(--brand) 0 28px, var(--line) 28px);
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes sheet-in {
+  from {
+    transform: translateY(16px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+.sheet-in {
+  animation: sheet-in 180ms ease-out;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+    color: #000;
+  }
+  .print-full {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .shadow-card {
+    box-shadow: none !important;
+  }
+}
