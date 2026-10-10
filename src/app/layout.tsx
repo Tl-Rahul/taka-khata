@@ -24,8 +24,10 @@ const themeScript = `(function(){try{var t=localStorage.getItem('theme')||'syste
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="bn" suppressHydrationWarning>
+    <html lang="bn" translate="no" suppressHydrationWarning>
       <head>
+        {/* the app is already bilingual; browser auto-translate rewrites the page and crashes React */}
+        <meta name="google" content="notranslate" />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
