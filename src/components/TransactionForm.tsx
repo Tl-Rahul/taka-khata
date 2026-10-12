@@ -167,7 +167,7 @@ export function TransactionForm({ preset, editing, onDone, onCancel }: { preset?
       description: description.trim() || null,
       notes: notes.trim() || null,
       attachment_path: attachment,
-      import_hash: editing?.import_hash ?? null,
+      import_hash: editing?.import_hash ?? preset?.import_hash ?? null,
     };
   }
 

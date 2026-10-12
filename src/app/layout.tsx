@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: { default: "টাকার খাতা · Taka Khata", template: "%s · টাকার খাতা" },
   description: "Personal finance manager — accounts, income, expenses, debts, receivables, budgets and net worth.",
   manifest: "/manifest.webmanifest",
-  icons: { icon: "/icon.svg", apple: "/icon.svg" },
+  icons: { icon: "/icon.svg", apple: "/apple-touch-icon.png" },
   robots: { index: false, follow: false },
 };
 

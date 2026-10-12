@@ -200,7 +200,10 @@ async function rest(req, res, url) {
       const arr = Array.isArray(body) ? body : [body];
       const cols = [...new Set(arr.flatMap((o) => Object.keys(o)))].map(ident);
       values.push(JSON.stringify(arr));
-      ({ rows } = await db.query(`insert into ${table} (${cols.join(",")}) select ${cols.join(",")} from json_populate_recordset(null::${table}, $${values.length}::json) returning *`, values));
+      const onConflict = url.searchParams.get("on_conflict");
+      const ignoreDup = (req.headers.prefer || "").includes("resolution=ignore-duplicates") && onConflict;
+      const conflict = ignoreDup ? ` on conflict (${onConflict.split(",").map(ident).join(",")}) do nothing` : "";
+      ({ rows } = await db.query(`insert into ${table} (${cols.join(",")}) select ${cols.join(",")} from json_populate_recordset(null::${table}, $${values.length}::json)${conflict} returning *`, values));
     } else if (req.method === "PATCH") {
       const body = JSON.parse((await readBody(req)).toString());
       const cols = Object.keys(body).map(ident);

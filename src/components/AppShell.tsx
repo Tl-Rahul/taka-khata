@@ -12,6 +12,7 @@ import {
   Handshake,
   House,
   Landmark,
+  MessageSquareText,
   Plus,
   Settings,
   Target,
@@ -40,6 +41,7 @@ export const NAV: Array<{ href: string; key: string; icon: ReactNode; group: 0 |
   { href: "/goals", key: "nav.goals", icon: <Target />, group: 1 },
   { href: "/net-worth", key: "nav.networth", icon: <Landmark />, group: 2 },
   { href: "/reports", key: "nav.reports", icon: <ChartColumn />, group: 2 },
+  { href: "/sms", key: "nav.sms", icon: <MessageSquareText />, group: 2 },
   { href: "/import", key: "nav.import", icon: <Upload />, group: 2 },
   { href: "/settings", key: "nav.settings", icon: <Settings />, group: 2 },
 ];

@@ -50,7 +50,7 @@ export async function middleware(request: NextRequest) {
 
   if (!user && !isPublic) {
     const to = new URL("/login", request.url);
-    if (path !== "/") to.searchParams.set("next", path);
+    if (path !== "/") to.searchParams.set("next", path + request.nextUrl.search);
     return NextResponse.redirect(to);
   }
   if (user && path === "/login") return NextResponse.redirect(new URL("/", request.url));
